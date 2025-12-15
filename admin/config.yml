@@ -1,8 +1,9 @@
-backend:
+  backend:
   name: github
-  repo: Arwen-store/Arwen
-  branch: main
-  base_url: https://cms-auth-shaw.vercel.app
+  repo: Arwen-store/Arwen     # your GitHub repo
+  branch: main                # default branch
+  base_url: https://decap-cmsa-oauth.vercel.app
+
 
 # 📸 Media
 media_folder: "img"
