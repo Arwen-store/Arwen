@@ -1,0 +1,20 @@
+title:              افخم العطور من عساف و لافرين بين يديك
+description:            نسبة من الارباح صدقة جارية عنكم
+author:             Arwen
+url:                "https://Arwen-store.github.io"
+baseurl:            "/Arwen"  
+
+# Social Profiles
+instagram_username:  Arwen
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Products collection
+collections:
+  products:
+    output: true
+    permalink: /products/:title/

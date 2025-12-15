@@ -1,0 +1,753 @@
+// _products.scss
+
+
+
+/* ========================= */
+/* Carousel multi-item setup */
+/* ========================= */
+
+.center {
+  margin-top: 0% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.wrapper {
+  position: relative;
+  width: 80%;
+  overflow: hidden;
+  align-items: center;
+}
+
+.shipping-info {
+  background-color: #f9f9f9;
+  padding: 50px 20px;
+  border-radius: 12px;
+  margin: 40px auto;
+  margin-bottom: 0;
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+.all-products-section {
+  background-color: #f9f9f9;
+  padding: 50px 20px;
+  border-radius: 12px;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.all-products-section .section-text {
+  font-size: 1.3rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.all-products-section .btn-container {
+  text-align: center;
+}
+
+.all-products-btn {
+  display: inline-block;
+  background-color: #9c8077;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.all-products-btn:hover {
+  background-color: #857575;
+  color: #f8f9fa !important;
+  transform: scale(1.05);
+}
+
+
+
+
+.shipping-info .section-text {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.8;
+  text-align: justify;
+  direction: rtl; /* Arabic text direction */
+}
+
+.inner {
+  padding-right: 5%;
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+.card {
+ flex: 0 0 30%;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-right: 1.9%;
+ 
+  
+}
+
+.card img {
+  width: 90%;
+  height: 60%;
+  border-radius: 10px 10px 0 0;
+
+  display: block;
+  margin: 0 auto;         /* center image horizontally */
+  object-fit: cover;
+}
+
+.content {
+   padding: 0.5rem 0.7rem;
+}
+
+.map {
+  margin-top: 1rem;
+}
+
+.map button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  margin: 0 5px;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.map button.active {
+  background: #333;
+}
+
+/* Arrow buttons */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  padding: 0 10px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+/* Responsive */
+@media (max-width: 992px) {
+  .card { flex: 0 0 45%; }
+}
+
+@media (max-width: 576px) {
+  .card { flex: 0 0 90%; }
+}
+
+
+
+
+
+
+
+
+.carousel-inner {
+  overflow: hidden;
+}
+
+ .carousel-item {
+   display: flex;
+  justify-content: center;
+  flex: 0 0 100%;                // Space between cards
+}
+
+ .carousel-item .card {
+  flex: 1 0 0; /* Cards share space inside the slide */
+  max-width: 18rem;
+  margin: 0 0.5rem;
+  
+}
+
+.carousel-item .card:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+ .carousel-item .card {
+    flex: 0 0 45%;            // 2 cards per slide on tablets
+  }
+}
+
+@media (max-width: 576px) {
+ .carousel-item {
+    flex-direction: column;   // Stack cards vertically on mobile
+    align-items: center;
+  }
+   .carousel-item .card {
+    flex: 0 0 90%;            // 1 card per slide
+    margin-bottom: 15px;
+  }
+}
+
+/* Product image */
+ .carousel-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Titles and text */
+ .card-title {
+  font-size: 1.7rem;
+  text-align: center;
+  margin: 6px 0 10px;
+}
+
+.center-title{
+  margin-bottom: 1% !important;
+  margin-top: 12% !important;
+}
+
+
+
+
+  p
+ {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: end;
+  margin-bottom: 5px;
+}
+
+/* Button container */
+.btn-container {
+  text-align: right !important;
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* Details button */
+ .details-btn {
+  margin-top: 30px;
+  display: inline-block !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background-color: #9c8077 !important;
+  color: #fff !important;
+  font-size: 1rem !important;
+  padding: 8px 28px !important;
+  width: 45% !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.details-btn:hover {
+  background-color: #857575 !important;
+  transform: scale(1.05) !important;
+}
+
+/* Responsive adjustments for button */
+@media (max-width: 1200px) {
+   .details-btn {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 990px) {
+  .details-btn {
+    width: 60% !important;
+    display: block !important;
+    margin: 8px auto !important;
+  }
+}
+
+@media (max-width: 576px) {
+   .details-btn {
+    width: 80% !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ========================= */
+/* Removed grid styling to prevent conflicts */
+/*
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+*/
+
+@media (max-width: 576px) {
+
+  .card img,
+  .carousel-item img {
+    width: 100%;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .btn{
+    margin-top: 0px !important;
+  }
+
+  .all-products-card .card-body
+
+ {
+
+  height: 80px !important;
+
+ }
+
+}
+
+
+
+/* Product page specific styles - RTL ready */
+.product-page {
+
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: #f8f9fa !important;
+}
+
+.quantity-selector {
+  user-select: none;
+}
+
+
+
+
+
+
+
+
+    margin-top: 150px;
+
+  
+
+  // .navbar {
+  //   background-color: #ffaeef !important;
+  // }
+
+  // .navbar .navbar-brand,
+  // .navbar .nav-link {
+  //   color: #ffffff !important;
+  // }
+
+  // .navbar .nav-link:hover {
+  //   color: #FDAAAA !important;
+  // }
+
+  header.masthead {
+    background-color: #f8f9fa;
+    padding: 80px 0;
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+  }
+
+  main {
+
+color: #464545;
+
+    direction: ltr;
+    margin-top: 120px;
+    img {
+      width: 70%;
+      height: auto;
+      margin-right: 100px;
+      object-fit: cover;
+      border-radius: 10%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    h4 {
+      margin-top: 8%;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      margin-top: 5%;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      border-radius: 6px;
+      background-color: #5A9690;
+    }
+
+
+  }
+
+  /* Optional: detailed content */
+  .col-12.text-right {
+    text-align: right;
+  }
+
+
+
+.remove-item{
+  background-color: #DD0303 !important;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 30%;
+}
+@media (max-width: 576px) {
+
+  .basket-product-description{
+    margin-top: 15%;
+  }
+
+}
+
+#checkout-btn{
+  background-color: #5A9690;
+  border-radius: 5px;
+}
+
+}
+
+
+
+// all products page styling 
+
+.all-products-card{
+  margin-bottom: 100px !important;
+
+.card{
+  margin-top: 100px;
+
+  display: flex;
+  flex-direction: column;
+  height: 80% !important;
+  width: 110%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+
+
+
+
+.color-options {
+  display: flex;
+  justify-content: flex-end; /* shift circles to the right */
+  flex-wrap: wrap;           /* wrap if too many */
+  gap: 10px;                 /* space between circles */
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+.card-title {
+  font-size: 1.5rem;
+  max-height: 1em; /* reserve space for up to 2 lines */
+}
+
+.all-products-btn {
+  margin-top: auto; /* push button to bottom inside the card */
+}
+
+
+
+}
+
+
+
+
+.color-options {
+  display: flex;
+  justify-content: flex-end; /* shift circles to the right */
+  flex-wrap: wrap;
+  gap: 10px; /* space between circles */
+  margin-top: 5px;
+}
+
+.color-option {
+  width: 35px;        /* must define width */
+  height: 35px;       /* must define height */
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;    /* pointer on hover */
+  display: inline-block; /* make the div visible */
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.color-option:hover {
+  transform: scale(1.2);
+  border-color: #666;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.color-option.selected {
+  border: 3px solid #000;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  transform: scale(1.2);
+}
+
+
+
+
+
+.img-fluid-basket {
+  height: 200px !important;
+  width: 200px !important;
+  object-fit: cover;
+  margin-right: 20px !important; /* space between image and text */
+  flex-shrink: 0; /* prevent shrinking too much */
+}
+
+.basket-product-details {
+  flex: 1; /* take remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure the container uses flex for alignment */
+.card .d-flex.align-items-center {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* space between image and text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .img-fluid-basket {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  .basket-product-details {
+    margin-left: 0 !important;
+  }
+
+  .card .d-flex.align-items-center {
+    flex-direction: row; /* stays side by side */
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card .d-flex.align-items-center {
+    flex-direction: column; /* stack image above text on very small screens */
+    text-align: center;
+  }
+
+  .img-fluid {
+    margin-right: 0 !important;
+    margin-bottom: 10px;
+  }
+}
+
+#size{
+  width: 7rem;
+  height: 3rem;
+}
+
+.carousel-item {
+  display: none !important;
+}
+.carousel-item.active {
+  display: block !important;
+}
+
+
+@media (max-width: 490px) {
+
+  .all-products-btn{
+    font-size: 0.8rem;
+  }
+
+  .all-products-container{
+    margin-top: 100px !important;
+  }
+
+.card-title{
+  font-size: 1.1rem !important;
+}
+
+.card-text{
+  font-size: 1rem;
+}
+
+.card
+
+  .all-products-container{
+  margin-top: 100px !important;
+}
+  }
+
+
+  @media (max-width: 372px) {
+
+    .all-products-btn{
+      height: 3rem;
+      width: 6rem;
+
+      font-size: 0.75rem;
+    }
+
+    
+    
+  }
+
+
+
+
+
+
+
+
+/* ===============================
+   Reviews Section – Simple & Clean
+=============================== */
+
+.reviews-section {
+  padding: 60px 20px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.reviews-section h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 30px;
+}
+
+/* Carousel container */
+#reviewsCarousel {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Carousel inner box */
+#reviewsCarousel .carousel-inner {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 24px;
+  background-color: #fff;
+}
+
+/* Review image */
+.review-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+}
+
+/* ===============================
+   Indicators
+=============================== */
+
+.carousel-indicators {
+  bottom: -30px;
+}
+
+.carousel-indicators li {
+  width: 8px;
+  height: 8px;
+  background-color: #ddd;
+  border-radius: 50%;
+}
+
+.carousel-indicators .active {
+  background-color: #111;
+}
+
+/* ===============================
+   Controls (Side – Centered)
+=============================== */
+
+.carousel-control-prev,
+.carousel-control-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+}
+
+/* ===============================
+   Mobile
+=============================== */
+
+@media (max-width: 576px) {
+  #reviewsCarousel .carousel-inner {
+    padding: 16px;
+  }
+
+  .review-img {
+    max-height: 260px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 30px;
+    height: 30px;
+  }
+}
+

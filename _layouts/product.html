@@ -1,0 +1,150 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    {% if page.title %}{{ page.title | escape }} - {{ site.title | escape }}
+    {% else %}{{ site.title | escape }}{% endif %}
+  </title>
+
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+</head>
+
+<body class="product-page">
+
+{% include navbar.html %}
+
+<main class="container my-5">
+  <div class="row align-items-center">
+
+    <!-- Product Image -->
+    <div class="col-md-6 mb-4">
+      {% if page.images %}
+      <div id="productCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          {% for img in page.images %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ img | prepend: site.baseurl | replace: '//', '/' }}"
+                 alt="{{ page.title }}"
+                 class="img-fluid shadow mb-3 d-block w-100">
+          </div>
+          {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Product Info -->
+    <div class="col-md-6">
+      <div class="product-info text-right">
+
+        <h2 class="mb-3">{{ page.title }}</h2>
+
+        {% if page.subtitle %}
+        <h3 class="mb-2 text-muted">{{ page.subtitle }}</h3>
+        {% endif %}
+
+        <p class="lead">{{ page.description }}</p>
+        <p class="lead">{{ page.brand }} :البراند</p>
+        <p class="lead">{{ page.gender }} :الجنس</p>
+
+        <!-- PRICE -->
+        <h4 class="mb-4">
+          السعر:
+          <span id="productPrice">{{ page.sizes[0].price }}</span>
+          ريال عماني
+        </h4>
+
+        <!-- Size Selector -->
+        {% if page.sizes %}
+        <div class="form-group mb-3 text-right">
+          <label for="size" class="d-block mb-2">:الحجم</label>
+          <select id="size" class="form-select text-right">
+            {% for s in page.sizes %}
+            <option value="{{ s.size }}" data-price="{{ s.price }}">
+              {{ s.size }} ML
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endif %}
+
+        <!-- Quantity Selector -->
+        <div class="form-group mb-3 text-right">
+          <label class="d-block mb-2">:الكمية</label>
+          <div class="quantity-selector d-inline-flex align-items-center">
+            <button type="button" class="btn btn-circle btn-outline-primary" id="decrease">-</button>
+            <span id="quantity-display" class="mx-3">1</span>
+            <button type="button" class="btn btn-circle btn-outline-primary" id="increase">+</button>
+          </div>
+          <input type="hidden" id="quantity" value="1">
+        </div>
+
+        <!-- Add to Basket -->
+        <button class="btn btn-success add-to-basket"
+          data-id="{{ page.url }}"
+          data-title="{{ page.title }}"
+          data-price="{{ page.sizes[0].price }}"
+          data-size="{{ page.sizes[0].size }}"
+          data-image="{{ page.image }}">
+          أضف إلى السلة
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  {% if page.content %}
+  <div class="row mt-5">
+    <div class="col-12 text-right">
+      {{ content }}
+    </div>
+  </div>
+  {% endif %}
+</main>
+
+{% include footer.html %}
+<script src="{{ '/assets/js/basket.js' | relative_url }}"></script>
+{% include scripts.html %}
+
+<!-- Size → Price Sync -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const sizeSelect = document.getElementById("size");
+  const priceEl = document.getElementById("productPrice");
+  const addBtn = document.querySelector(".add-to-basket");
+
+  if (!sizeSelect) return;
+
+  sizeSelect.addEventListener("change", function () {
+    const option = this.options[this.selectedIndex];
+    priceEl.textContent = option.dataset.price;
+    addBtn.dataset.price = option.dataset.price;
+    addBtn.dataset.size = option.value;
+  });
+});
+</script>
+
+</body>
+</html>

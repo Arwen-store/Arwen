@@ -1,0 +1,43 @@
+{
+  "title": "Arwen",
+  "name": "Arwen",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "health",
+    "wellbeing",
+    "blog",
+    "css",
+    "bootstrap"
+  ],
+  "homepage": "https://your-website.com",
+  "bugs": {
+    "url": "https://github.com/YourUsername/shaw/issues",
+    "email": "your-email@example.com"
+  },
+  "license": "MIT",
+  "author": "shaw",
+  "contributors": [
+    " (https://your-website.com)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arwen-store/Arwen.git"
+  },
+  "dependencies": {
+    "@tinacms/cli": "^1.10.3",
+    "@tinacms/git-client": "^0.43.0",
+    "bootstrap": "4.6.0",
+    "font-awesome": "4.7.0",
+    "jquery": "3.6.0",
+    "startbootstrap-clean-blog": "5.1.0",
+    "tinacms": "^2.8.3"
+  },
+  "devDependencies": {
+    "browser-sync": "2.26.14"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

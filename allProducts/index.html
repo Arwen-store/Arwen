@@ -1,0 +1,252 @@
+---
+layout: default
+title: جميع العبايات
+navbar_color: pink
+---
+
+<div class="container all-products-container my-5 text-center">
+    <h1 class="center-title mb-4">جميع العطور</h1>
+
+
+<!-- ========== FILTER BAR (STYLED + CHECKBOXES) ========== -->
+<style>
+    .filter-toggle-container {
+        position: relative;
+        margin-top: 30px;
+        /* margin-bottom: 20px; */
+        text-align: left;
+    }
+
+    .filter-toggle-btn {
+        background: #666666;
+        color: #fff;
+        border: none;
+        padding: 8px 25px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .filter-panel {
+        position: absolute;
+        top: 45px;
+        left: 0;
+        width: 260px;
+        background: #f8f8f8;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        display: none;
+        z-index: 10;
+    }
+
+    .filter-panel.active {
+        display: block;
+    }
+
+    .filter-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .filter-group label {
+        display: block;
+        margin-bottom: 6px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .filter-group input {
+        margin-left: 6px;
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+
+    .filter-icon{
+        width: 20px;
+    }
+
+    
+
+
+#priceRange {
+    width: 100%;
+    cursor: pointer;
+}
+
+.price-range-text {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
+</style>
+
+
+
+
+
+    <!-- ===================== FILTER BAR ===================== -->
+   <div class="filter-toggle-container">
+    <button id="filterToggle" class="filter-toggle-btn">
+        ترتيب <img src="{{ '/img/unfold.png' | relative_url }}" alt="فتح خيارات الترتيب" class="filter-icon">
+
+    </button> <hr class="seperative">
+
+    <div id="filterPanel" class="filter-panel">
+
+        <!-- Brand Filter -->
+        <div class="filter-group mb-3">
+            <div class="filter-title">العلامة التجارية</div>
+
+            <label>
+                Assaf
+                <input type="checkbox" class="brand-filter" value="Assaf">
+            </label>
+
+            <label>
+                Laverne
+                <input type="checkbox" class="brand-filter" value="Laverne">
+            </label>
+        </div>
+
+        <!-- Gender Filter -->
+        <div class="filter-group">
+            <div class="filter-title">الجنس</div>
+
+            <label>
+                رجال
+                <input type="checkbox" class="gender-filter" value="Men">
+            </label>
+
+            <label>
+                نساء
+                <input type="checkbox" class="gender-filter" value="Women">
+            </label>
+            <label>
+                للجنسين
+                <input type="checkbox" class="gender-filter" value="unisex">
+            </label>
+        </div>
+
+        <!-- Price Filter -->
+<div class="filter-group mt-3">
+    <div class="filter-title">السعر</div>
+
+    <input type="range"
+           id="priceRange"
+           min="0"
+           max="500"
+           step="1"
+           value="500">
+
+    <div class="price-range-text">
+        حتى <span id="priceValue">500</span> ريال
+    </div>
+</div>
+
+    </div>
+</div>
+
+    <!-- ===================== PRODUCTS ===================== -->
+    <div class="row" id="productsContainer">
+        {% for product in site.products %}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4 all-products-card product-item"
+             data-brand="{{ product.brand }}"
+             data-gender="{{ product.gender }}"
+              data-price="{{ product.price }}">
+
+            <div class="card all-products-card h-100 shadow-sm">
+                {% if product.image %}
+                <img src="{{ product.image | relative_url }}" class="card-img-top" alt="{{ product.title }}">
+                {% endif %}
+
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <!-- <p class="card-text fw-bold text-end">{{ product.price }} ريال عماني</p> -->
+                    <a href="{{ product.url | relative_url }}" class="btn all-products-btn btn-dark mt-auto">التفاصيل</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- ===================== FILTER SCRIPT ===================== -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const toggleBtn = document.getElementById("filterToggle");
+    const panel = document.getElementById("filterPanel");
+
+    toggleBtn.addEventListener("click", function () {
+        panel.classList.toggle("active");
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!panel.contains(e.target) && !toggleBtn.contains(e.target)) {
+            panel.classList.remove("active");
+        }
+    });
+});
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const brandCheckboxes = document.querySelectorAll(".brand-filter");
+    const genderCheckboxes = document.querySelectorAll(".gender-filter");
+    const priceRange = document.getElementById("priceRange");
+    const priceValue = document.getElementById("priceValue");
+    const products = document.querySelectorAll(".product-item");
+
+    function getCheckedValues(checkboxes) {
+        return [...checkboxes]
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+    }
+
+    function filterProducts() {
+        const selectedBrands = getCheckedValues(brandCheckboxes);
+        const selectedGenders = getCheckedValues(genderCheckboxes);
+        const maxPrice = parseFloat(priceRange.value);
+
+        products.forEach(product => {
+            const brand = product.dataset.brand;
+            const gender = product.dataset.gender;
+            const price = parseFloat(product.dataset.price);
+
+            const matchesBrand =
+                selectedBrands.length === 0 || selectedBrands.includes(brand);
+
+            const matchesGender =
+                selectedGenders.length === 0 || selectedGenders.includes(gender);
+
+            const matchesPrice = price <= maxPrice;
+
+            product.style.display =
+                (matchesBrand && matchesGender && matchesPrice)
+                ? "block"
+                : "none";
+        });
+    }
+
+    // Update UI price text
+    priceRange.addEventListener("input", function () {
+        priceValue.textContent = this.value;
+        filterProducts();
+    });
+
+    brandCheckboxes.forEach(cb => cb.addEventListener("change", filterProducts));
+    genderCheckboxes.forEach(cb => cb.addEventListener("change", filterProducts));
+});
+</script>

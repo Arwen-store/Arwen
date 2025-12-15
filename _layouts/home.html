@@ -1,0 +1,201 @@
+---
+layout: default
+
+
+
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
+{% else %}
+<header class="masthead">
+{% endif %}
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>{{ site.title }}</h1>
+          {% if site.description %}
+          <span class="subheading">{{ site.description }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="shipping-info">
+  <div class="container">
+    <p class="section-text">
+نؤمن أن الأناقة تبدأ من الأثر الذي تتركه،
+ولهذا نختار عطورًا تُصاغ بعناية لتروي قصتك دون كلمات.    </p>
+    
+  </div>
+</section>
+
+
+
+
+<div class="center">
+  <h1 class="center-title">احدث العباءات</h1>
+  <div class="wrapper">
+    <div class="inner">
+      {% for product in site.products limit:6 %}
+      <div class="card">
+        {% if product.image %}
+          <img src="{{ product.image | relative_url }}" alt="{{ product.title }}">
+        {% endif %}
+        <div class="content">
+          <h1 class="card-title">{{ product.title }}</h1>
+          <div style="text-align: end;">
+  <!-- <p style="text-align: right;">
+    ريال عماني  <span dir="rtl">{{ product.price }}</span>
+  </p> -->
+  <a href="{{ product.url | relative_url }}" class="details-btn btn btn-dark">التفاصيل</a>
+</div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Left/Right arrows -->
+    <button class="arrow left">&#10094;</button>
+    <button class="arrow right">&#10095;</button>
+  </div>
+
+  <div class="map">
+    {% assign total_slides = site.products | size | divided_by: 3 | ceil %}
+    {% for i in (0..total_slides | minus:1) %}
+      <button class="{% if i == 0 %}active{% endif %}"></button>
+    {% endfor %}
+  </div>
+</div>
+
+
+<section class="all-products-section">
+  <div class="container">
+    <p class="section-text" dir="ltr">
+      يمكنك مشاهدة جميع العطور من هنا
+    </p>
+    <div class="btn-container">
+      <a href="{{ '/allProducts' | relative_url }}" class="all-products-btn">جميع العطور</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ===============================
+     Customer Reviews Carousel
+=============================== -->
+<section class="reviews-section my-5">
+  <div class="container text-center">
+
+    <h2 class="mb-4">آراء عملائنا</h2>
+
+    <div id="reviewsCarousel" class="carousel slide" data-ride="carousel">
+
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#reviewsCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#reviewsCarousel" data-slide-to="1"></li>
+        <li data-target="#reviewsCarousel" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="{{ '/img/review1.jpg' | relative_url }}"
+               class="d-block mx-auto review-img"
+               alt="Customer review 1">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{{ '/img/review2.jpg' | relative_url }}"
+               class="d-block mx-auto review-img"
+               alt="Customer review 2">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{{ '/img/review3.jpg' | relative_url }}"
+               class="d-block mx-auto review-img"
+               alt="Customer review 3">
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <a class="carousel-control-prev" href="#reviewsCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#reviewsCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<script>
+const slidesWrapper = document.querySelector(".wrapper");
+const slidesInner = document.querySelector(".inner");
+const cards = document.querySelectorAll(".inner .card");
+const leftBtn = document.querySelector(".arrow.left");
+const rightBtn = document.querySelector(".arrow.right");
+const dots = document.querySelectorAll(".map button");
+
+let currentSlide = 0;
+
+function getCardsPerSlide() {
+  if (window.innerWidth <= 576) return 1;      // mobile
+  if (window.innerWidth <= 992) return 2;      // tablet
+  return 3;                                     // desktop
+}
+
+function updateSlide() {
+  const perSlide = getCardsPerSlide();
+  const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(slidesInner).gap) || 0;
+  const moveWidth = cardWidth * perSlide;
+  slidesInner.style.transform = `translateX(-${currentSlide * moveWidth}px)`;
+
+  // update dots
+  dots.forEach(dot => dot.classList.remove("active"));
+  if (dots[currentSlide]) dots[currentSlide].classList.add("active");
+}
+
+leftBtn.addEventListener("click", () => {
+  if (currentSlide > 0) currentSlide--;
+  updateSlide();
+});
+
+rightBtn.addEventListener("click", () => {
+  const perSlide = getCardsPerSlide();
+  const maxSlide = Math.ceil(cards.length / perSlide) - 1;
+  if (currentSlide < maxSlide) currentSlide++;
+  updateSlide();
+});
+
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => {
+    currentSlide = i;
+    updateSlide();
+  });
+});
+
+window.addEventListener("resize", updateSlide);
+updateSlide();
+</script>
+
