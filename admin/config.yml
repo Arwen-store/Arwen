@@ -71,6 +71,19 @@ collections:
         time_format: false
         required: true
 
+
+        - label: ""
+        name: "spacer_after_date"
+        widget: "markdown"
+        default: "<br><br>"
+        required: false
+
+
+
+
+
+
+
   - name: "dummy_section"
     label: "🪄 Dummy Section"
     folder: "_dummy_section"
