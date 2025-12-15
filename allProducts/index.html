@@ -155,7 +155,16 @@ navbar_color: pink
    <div class="row" id="productsContainer">
     {% for product in site.products %}
 
-    {% assign min_price = product.sizes | map: "price" | sort | first %}
+    {% assign min_price = nil %}
+
+{% if product.sizes %}
+  {% for s in product.sizes %}
+    {% if min_price == nil or s.size_price.price < min_price %}
+      {% assign min_price = s.size_price.price %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 
     <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4 all-products-card product-item"
          data-brand="{{ product.brand }}"
