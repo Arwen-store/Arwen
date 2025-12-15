@@ -70,25 +70,30 @@
         <p class="lead">{{ page.gender }} :الجنس</p>
 
         <!-- PRICE -->
-        <h4 class="mb-4">
-          السعر:
-          <span id="productPrice">{{ page.sizes[0].price }}</span>
-          ريال عماني
-        </h4>
+       <h4 class="mb-4">
+  السعر:
+  <span id="productPrice">
+    {{ page.sizes[0].size_price.price }}
+  </span>
+  ريال عماني
+</h4>
 
         <!-- Size Selector -->
-        {% if page.sizes %}
-        <div class="form-group mb-3 text-right">
-          <label for="size" class="d-block mb-2">:الحجم</label>
-          <select id="size" class="form-select text-right">
-            {% for s in page.sizes %}
-            <option value="{{ s.size }}" data-price="{{ s.price }}">
-              {{ s.size }} 
-            </option>
-            {% endfor %}
-          </select>
-        </div>
-        {% endif %}
+       {% if page.sizes %}
+<div class="form-group mb-3 text-right">
+  <label for="size" class="d-block mb-2">:الحجم</label>
+
+  <select id="size" class="form-select text-right">
+    {% for s in page.sizes %}
+      <option
+        value="{{ s.size_price.size }}"
+        data-price="{{ s.size_price.price }}">
+        {{ s.size_price.size }}
+      </option>
+    {% endfor %}
+  </select>
+</div>
+{% endif %}
 
         <!-- Quantity Selector -->
         <div class="form-group mb-3 text-right">
@@ -102,14 +107,15 @@
         </div>
 
         <!-- Add to Basket -->
-        <button class="btn btn-success add-to-basket"
-          data-id="{{ page.url }}"
-          data-title="{{ page.title }}"
-          data-price="{{ page.sizes[0].price }}"
-          data-size="{{ page.sizes[0].size }}"
-          data-image="{{ page.image }}">
-          أضف إلى السلة
-        </button>
+       <button class="btn btn-success add-to-basket"
+  data-id="{{ page.url }}"
+  data-title="{{ page.title }}"
+  data-price="{{ page.sizes[0].size_price.price }}"
+  data-size="{{ page.sizes[0].size_price.size }}"
+  data-image="{{ page.image }}">
+  أضف إلى السلة
+</button>
+
 
       </div>
     </div>
@@ -139,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   sizeSelect.addEventListener("change", function () {
     const option = this.options[this.selectedIndex];
+
     priceEl.textContent = option.dataset.price;
     addBtn.dataset.price = option.dataset.price;
     addBtn.dataset.size = option.value;
