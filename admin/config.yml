@@ -1,9 +1,8 @@
-  backend:
+backend:
   name: github
-  repo: Arwen-store/Arwen     # your GitHub repo
-  branch: main                # default branch
+  repo: Arwen-store/Arwen
+  branch: main
   base_url: https://decap-cmsa-oauth.vercel.app
-
 
 # 📸 Media
 media_folder: "img"
@@ -19,22 +18,20 @@ collections:
 
     fields:
       - { label: "Layout", name: "layout", widget: "hidden", default: "product" }
-
       - { label: "العنوان", name: "title", widget: "string" }
-
       - { label: "السعر", name: "price", widget: "number", value_type: "float" }
-
       - { label: "الصورة الرئيسية", name: "image", widget: "image" }
 
       - label: "معرض الصور"
         name: "images"
         widget: "list"
         field:
-          { label: "صورة", name: "image", widget: "image" }
+          label: "صورة"
+          name: "image"
+          widget: "image"
 
       - { label: "الوصف", name: "description", widget: "text" }
 
-      # ✅ Perfume sizes as OPTIONS (selectable)
       - label: "حجم العطر"
         name: "sizes"
         widget: "list"
@@ -50,7 +47,6 @@ collections:
             - "150ml"
             - "200ml"
 
-      # ✅ Date added (backend-friendly)
       - label: "تاريخ الإضافة"
         name: "date"
         widget: "datetime"
@@ -58,7 +54,6 @@ collections:
         time_format: false
         required: true
 
-  # 🪄 Dummy section (no real use)
   - name: "dummy_section"
     label: "🪄 Dummy Section"
     folder: "_dummy_section"
@@ -66,5 +61,4 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Useless Title", name: "useless_title", widget: "string", required: false }
-      - { label: "Useless Text", name: "useless_text", widget: "text", required: false }
-      - { label: "Completely Pointless Number", name: "useless_number", widget: "number", required: false }
+      - { label: "Useless Text", name: "useless_text", widget:_
