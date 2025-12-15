@@ -152,56 +152,59 @@ navbar_color: pink
 </div>
 
     <!-- ===================== PRODUCTS ===================== -->
-    <div class="row" id="productsContainer">
-        {% for product in site.products %}
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4 all-products-card product-item"
-             data-brand="{{ product.brand }}"
-             data-gender="{{ product.gender }}"
-              data-price="{{ product.price }}">
+   <div class="row" id="productsContainer">
+    {% for product in site.products %}
 
-            <div class="card all-products-card h-100 shadow-sm">
-                {% if product.image %}
-                <img src="{{ product.image | relative_url }}" class="card-img-top" alt="{{ product.title }}">
-                {% endif %}
+    {% assign min_price = product.sizes | map: "price" | sort | first %}
 
-                <div class="card-body d-flex flex-column justify-content-between">
-                    <h5 class="card-title">{{ product.title }}</h5>
-                    <!-- <p class="card-text fw-bold text-end">{{ product.price }} ريال عماني</p> -->
-                    <a href="{{ product.url | relative_url }}" class="btn all-products-btn btn-dark mt-auto">التفاصيل</a>
-                </div>
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4 all-products-card product-item"
+         data-brand="{{ product.brand }}"
+         data-gender="{{ product.gender }}"
+         data-price="{{ min_price }}">
+
+        <div class="card all-products-card h-100 shadow-sm">
+            {% if product.image %}
+            <img src="{{ product.image | relative_url }}"
+                 class="card-img-top"
+                 alt="{{ product.title }}">
+            {% endif %}
+
+            <div class="card-body d-flex flex-column justify-content-between">
+                <h5 class="card-title">{{ product.title }}</h5>
+
+                <p class="card-text fw-bold text-end">
+                    يبدأ من {{ min_price }} ريال
+                </p>
+
+                <a href="{{ product.url | relative_url }}"
+                   class="btn all-products-btn btn-dark mt-auto">
+                    التفاصيل
+                </a>
             </div>
-
         </div>
-        {% endfor %}
+
     </div>
+    {% endfor %}
+</div>
 </div>
 
 <!-- ===================== FILTER SCRIPT ===================== -->
 <script>
-
 document.addEventListener("DOMContentLoaded", function () {
 
     const toggleBtn = document.getElementById("filterToggle");
     const panel = document.getElementById("filterPanel");
 
-    toggleBtn.addEventListener("click", function () {
+    toggleBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
         panel.classList.toggle("active");
     });
 
-    // Close when clicking outside
-    document.addEventListener("click", function (e) {
-        if (!panel.contains(e.target) && !toggleBtn.contains(e.target)) {
-            panel.classList.remove("active");
-        }
+    document.addEventListener("click", function () {
+        panel.classList.remove("active");
     });
-});
 
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
+    panel.addEventListener("click", e => e.stopPropagation());
 
     const brandCheckboxes = document.querySelectorAll(".brand-filter");
     const genderCheckboxes = document.querySelectorAll(".gender-filter");
@@ -223,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
         products.forEach(product => {
             const brand = product.dataset.brand;
             const gender = product.dataset.gender;
-            const price = parseFloat(product.dataset.price);
+            const price = parseFloat(product.dataset.price) || 0;
 
             const matchesBrand =
                 selectedBrands.length === 0 || selectedBrands.includes(brand);
@@ -235,12 +238,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             product.style.display =
                 (matchesBrand && matchesGender && matchesPrice)
-                ? "block"
+                ? ""
                 : "none";
         });
     }
 
-    // Update UI price text
     priceRange.addEventListener("input", function () {
         priceValue.textContent = this.value;
         filterProducts();

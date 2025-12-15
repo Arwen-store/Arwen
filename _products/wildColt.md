@@ -1,8 +1,8 @@
 ---
 layout: product
 title: champion
-brand: Assaf
-gender: Man
+brand: Laverne
+gender: Men
 
 image: /img/champion.png
 images:
