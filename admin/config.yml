@@ -1,43 +1,56 @@
 backend:
   name: github
-  repo: Arwen-store/Arwen       # Your GitHub repo
+  repo: Arwen-store/Arwen
   branch: main
   base_url: https://decap-cmsa-oauth.vercel.app
 
 # 📸 Where images are saved
-media_folder: "img"         # folder in the repo
-public_folder: "/img"       # public URL path
+media_folder: "img"       # folder in the repo
+public_folder: "/img"     # public URL path
 
 collections:
   - name: "products"
-    label: "المنتجات"             # This shows as the collection name in the sidebar
-    label_singular: "منتج جديد"   # This changes the "New Product" button text
+    label: "المنتجات"             # sidebar name
+    label_singular: "منتج جديد"   # "New Product" button text
     folder: "_products"
     create: true
     slug: "{{slug}}"
+
     fields:
       - { label: "Layout", name: "layout", widget: "hidden", default: "product" }
       - { label: "العنوان", name: "title", widget: "string" }
       - { label: "السعر", name: "price", widget: "number", value_type: "float" }
       - { label: "الصورة الرئيسية", name: "image", widget: "image" }
+
       - label: "معرض الصور"
         name: "images"
         widget: "list"
         field: { label: "صورة", name: "image", widget: "image" }
+
       - { label: "الوصف", name: "description", widget: "text" }
-      - label: "المقاسات"
+
+      - label: "حجم العطر"
         name: "sizes"
         widget: "list"
-        field: { label: "مقاس", name: "size", widget: "string" }
-      - label: "الألوان"
-        name: "colors"
-        widget: "list"
-        fields:
-          - { label: "الاسم", name: "name", widget: "string" }
-          - { label: "الرمز", name: "code", widget: "color" }
+        field:
+          label: "الحجم"
+          name: "size"
+          widget: "select"
+          options:
+            - "30ml"
+            - "50ml"
+            - "75ml"
+            - "100ml"
+            - "150ml"
+            - "200ml"
 
+      - label: "تاريخ الإضافة"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        time_format: false
+        required: true
 
-  # 🪄 Dummy section (no real use, just exists)
   - name: "dummy_section"
     label: "🪄 Dummy Section"
     folder: "_dummy_section"
