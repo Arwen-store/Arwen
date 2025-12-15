@@ -5,13 +5,13 @@ backend:
   base_url: https://decap-cmsa-oauth.vercel.app
 
 # 📸 Where images are saved
-media_folder: "img"       # folder in the repo
-public_folder: "/img"     # public URL path
+media_folder: "img"
+public_folder: "/img"
 
 collections:
   - name: "products"
-    label: "المنتجات"             # sidebar name
-    label_singular: "منتج جديد"   # "New Product" button text
+    label: "المنتجات"
+    label_singular: "منتج جديد"
     folder: "_products"
     create: true
     slug: "{{slug}}"
@@ -19,7 +19,21 @@ collections:
     fields:
       - { label: "Layout", name: "layout", widget: "hidden", default: "product" }
       - { label: "العنوان", name: "title", widget: "string" }
-      - { label: "السعر", name: "price", widget: "number", value_type: "float" }
+
+      - label: "العلامة التجارية"
+        name: "brand"
+        widget: "select"
+        options:
+          - "Laverne"
+          - "Assaf"
+
+      - label: "الجنس"
+        name: "gender"
+        widget: "select"
+        options:
+          - "Men"
+          - "Women"
+
       - { label: "الصورة الرئيسية", name: "image", widget: "image" }
 
       - label: "معرض الصور"
@@ -29,20 +43,26 @@ collections:
 
       - { label: "الوصف", name: "description", widget: "text" }
 
-      - label: "حجم العطر"
+      - label: "الاحجام والأسعار"
         name: "sizes"
         widget: "list"
         field:
-          label: "الحجم"
-          name: "size"
-          widget: "select"
-          options:
-            - "30ml"
-            - "50ml"
-            - "75ml"
-            - "100ml"
-            - "150ml"
-            - "200ml"
+          label: "الحجم و السعر"
+          name: "size_price"
+          widget: "object"
+          fields:
+            - label: "الحجم"
+              name: "size"
+              widget: "select"
+              options:
+                - "30ML"
+                - "50ML"
+                - "75ML"
+                - "100ML"
+                - "150ML"
+                - "200ML"
+              required: true
+            - { label: "السعر", name: "price", widget: "number", value_type: "float", required: true }
 
       - label: "تاريخ الإضافة"
         name: "date"

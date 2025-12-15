@@ -17,7 +17,3 @@ sizes:
   - size: "100ML"
     price: 26
 
-colors:
-  - name: اسود
-    code: "#181818"
----
