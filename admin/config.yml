@@ -4,7 +4,6 @@ backend:
   branch: main
   base_url: https://decap-cmsa-oauth.vercel.app
 
-# 📸 Media
 media_folder: "img"
 public_folder: "/img"
 
@@ -61,4 +60,5 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Useless Title", name: "useless_title", widget: "string", required: false }
-      - { label: "Useless Text", name: "useless_text", widget:_
+      - { label: "Useless Text", name: "useless_text", widget: "text", required: false }
+      - { label: "Completely Pointless Number", name: "useless_number", widget: "number", required: false }
