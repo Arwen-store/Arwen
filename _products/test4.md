@@ -2,7 +2,7 @@
 layout: product
 title: Test4
 brand: Laverne
-gender: Unisex
+gender: unisex
 image: /img/Aruget.png
 images:
   - /img/Aruget.png
