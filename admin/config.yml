@@ -33,6 +33,7 @@ collections:
         options:
           - "Men"
           - "Women"
+          - "Unisex"
 
       - { label: "الصورة الرئيسية", name: "image", widget: "image" }
 
