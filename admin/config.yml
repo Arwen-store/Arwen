@@ -33,6 +33,7 @@ collections:
         options:
           - "Men"
           - "Women"
+          - "unisex"
 
       - { label: "الصورة الرئيسية", name: "image", widget: "image" }
 
@@ -72,7 +73,7 @@ collections:
         required: true
 
 
-        - label: ""
+      - label: ""
         name: "spacer_after_date"
         widget: "markdown"
         default: "<br><br>"
@@ -92,4 +93,4 @@ collections:
     fields:
       - { label: "Useless Title", name: "useless_title", widget: "string", required: false }
       - { label: "Useless Text", name: "useless_text", widget: "text", required: false }
-      - { label: "Completely Pointless Number", name: "useless_number", widget: "number", required: false }
+      - { label: "Completely Pointless Numbr", name: "useless_number", widget: "number", required: false }
