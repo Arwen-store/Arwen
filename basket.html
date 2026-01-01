@@ -48,6 +48,16 @@ title: سلة المشتريات
             <label for="customer-name">الاسم:</label>
             <input type="text" id="customer-name" class="form-control" placeholder="ادخل اسمك">
           </div>
+
+
+          <div class="form-group mb-3">
+            <label for="customer-phone">رقم الهاتف</label>
+            <input type="tel" id="customer-phone" class="form-control" placeholder="e.g. 9XXXXXXXX">
+          </div>
+
+
+
+
           <div class="form-group mb-3">
             <label for="customer-location">العنوان / الموقع:</label>
             <input type="text" id="customer-location" class="form-control" placeholder="ادخل عنوانك">
@@ -124,13 +134,18 @@ title: سلة المشتريات
 
         const name = document.getElementById("customer-name").value.trim();
         const location = document.getElementById("customer-location").value.trim();
+        const phone = document.getElementById("customer-phone").value.trim();
 
-        if (!name || !location) {
-          alert("الرجاء إدخال الاسم والعنوان");
+        if (!name ||!phone || !location) {
+          alert("الرجاء إدخال الاسم و العنوان و رقم الهاتف");
           return;
         }
 
-        let message = `طلب من: ${name}\nالموقع: ${location}\n\nتفاصيل الطلب:\n`;
+        let message =
+  `طلب من: ${name}\n` +
+  `رقم الهاتف: ${phone}\n` +
+  `الموقع: ${location}\n\n` +
+  `تفاصيل الطلب:\n`;
         let total = 0;
         basket.forEach(item => {
           message += `- ${item.title} x${item.qty}\n`;
